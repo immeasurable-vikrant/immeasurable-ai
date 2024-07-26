@@ -1,16 +1,28 @@
-import { Outlet } from 'react-router-dom'
-import './dashboardLayout.css'
-
+import { Outlet, useNavigate } from "react-router-dom";
+import "./dashboardLayout.css";
+import { useAuth } from "@clerk/clerk-react";
+import { useEffect } from "react";
 
 const DashboardLayout = () => {
-        return(
-                <div className='dashboardLayout'>
-                        <div className='menu'>Menu</div>
-                        <div className='content'>
-                                <Outlet/>
-                        </div>
-                </div>
-        )
-}
+  const { userId, isLoaded } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isLoaded && !userId) {
+      navigate("/sign-in");
+    }
+  }, [isLoaded, userId, navigate]);
 
-export default DashboardLayout
+  if(!isLoaded){
+        return <h1>Loading....</h1>
+  }
+  return (
+    <div className="dashboardLayout">
+      <div className="menu">Menu</div>
+      <div className="content">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default DashboardLayout;
