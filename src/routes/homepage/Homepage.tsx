@@ -16,7 +16,7 @@ const Homepage = () => {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat sint
           dolorem doloribus, architecto dolor.
         </h3>
-        <Link to="/dashboard">Get Started</Link>
+        <Link to="/dashboard">Try Immeasurable AI</Link>
       </div>
       <div className="right">
         <div className="imgContainer">
